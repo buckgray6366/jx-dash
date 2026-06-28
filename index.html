@@ -185,9 +185,9 @@ const WORKER="https://jx-gsc.jetterix.workers.dev";
 let BASE=null, LIVE=null;
 const $=id=>document.getElementById(id);
 
-// All date windows computed in the NETWORK timezone (OasisAds = a US network reporting in ET),
-// so the dashboard's days match OasisAds' reporting days exactly. GSC is queried for the same calendar dates.
-const NET_TZ="America/New_York";
+// All date windows computed in PACIFIC time (America/Los_Angeles) — GSC's native reporting day —
+// so GSC, OasisAds and the dashboard all share the exact same day boundary.
+const NET_TZ="America/Los_Angeles";
 function etToday(){return new Intl.DateTimeFormat("en-CA",{timeZone:NET_TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());}
 function _ymd(d){return d.toISOString().slice(0,10);}
 function _shift(s,n){const d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+n);return _ymd(d);}
@@ -222,7 +222,7 @@ async function loadAll(){
     range: lbl,
     updated: live? live.generatedAt : (BASE.updated||new Date().toISOString())
   });
-  $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+", ET) · all windows in ET / network time · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
+  $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+", PT) · all windows in Pacific (GSC + OasisAds aligned) · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
   setLive(live?"live":"cached",!!live);
   renderIndex(live);
   renderRich(live);

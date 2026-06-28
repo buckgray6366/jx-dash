@@ -36,9 +36,9 @@ def main():
     proxy = gonzo_proxy()
     op = make_opener(proxy)
     token = post(op, "/user/authenticate", {"user_name": OASIS_USER, "password": OASIS_PASS})["result"]["data"]["jwt"]
-    # date window in the NETWORK timezone (OasisAds reports in ET) so days match the panel exactly
+    # date window in PACIFIC (America/Los_Angeles) = GSC's native reporting day, so all 3 sources align
     from zoneinfo import ZoneInfo
-    end = datetime.datetime.now(ZoneInfo("America/New_York")).date(); start = end - datetime.timedelta(days=90)
+    end = datetime.datetime.now(ZoneInfo("America/Los_Angeles")).date(); start = end - datetime.timedelta(days=90)
     dr = {"date_range": {"start": str(start), "end": str(end)}}
     rep = post(op, "/report/campaign", {"filters": {"offer_id": None, **dr}, "limit": 50, "sort": "campaign_id", "order": 1}, token)
     rows = (rep.get("result") or {}).get("data") or []
