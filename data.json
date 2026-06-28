@@ -1,28 +1,79 @@
 {
-  "updated": "2026-06-28T18:40:00Z",
+  "updated": "2026-06-28T20:31:53Z",
   "range": "Last 7 days",
   "target_conv_per_day": 50,
   "gsc": {
-    "connected": false,
-    "note": "Connect Search Console (add gsc-reader@coolizi-gsc.iam.gserviceaccount.com as Owner on sc-domain:tryjetterix.com) to populate impressions/clicks/position.",
+    "connected": true,
+    "note": "",
     "geos": {
-      "us": {"impr": 0, "clicks": 0, "ctr": 0, "pos": 0},
-      "uk": {"impr": 0, "clicks": 0, "ctr": 0, "pos": 0},
-      "au": {"impr": 0, "clicks": 0, "ctr": 0, "pos": 0},
-      "de": {"impr": 0, "clicks": 0, "ctr": 0, "pos": 0},
-      "fr": {"impr": 0, "clicks": 0, "ctr": 0, "pos": 0}
+      "us": {
+        "impr": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "pos": 0
+      },
+      "uk": {
+        "impr": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "pos": 0
+      },
+      "au": {
+        "impr": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "pos": 0
+      },
+      "de": {
+        "impr": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "pos": 0
+      },
+      "fr": {
+        "impr": 0,
+        "clicks": 0,
+        "ctr": 0,
+        "pos": 0
+      }
     }
   },
   "oasis": {
     "connected": false,
     "note": "OasisAds (trkc115) per geo, subid s2=jx-<geo>. Stealth Playwright pull; no clicks yet (new offer).",
-    "payout": {"us": 55, "uk": 55, "au": 55, "de": 55, "fr": 55},
+    "payout": {
+      "us": 55,
+      "uk": 55,
+      "au": 55,
+      "de": 55,
+      "fr": 55
+    },
     "geos": {
-      "us": {"clicks": 0, "conv": 0, "revenue": 0},
-      "uk": {"clicks": 0, "conv": 0, "revenue": 0},
-      "au": {"clicks": 0, "conv": 0, "revenue": 0},
-      "de": {"clicks": 0, "conv": 0, "revenue": 0},
-      "fr": {"clicks": 0, "conv": 0, "revenue": 0}
+      "us": {
+        "clicks": 0,
+        "conv": 0,
+        "revenue": 0
+      },
+      "uk": {
+        "clicks": 0,
+        "conv": 0,
+        "revenue": 0
+      },
+      "au": {
+        "clicks": 0,
+        "conv": 0,
+        "revenue": 0
+      },
+      "de": {
+        "clicks": 0,
+        "conv": 0,
+        "revenue": 0
+      },
+      "fr": {
+        "clicks": 0,
+        "conv": 0,
+        "revenue": 0
+      }
     }
   }
 }
