@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Jetterix — Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#05171c;--bg2:#0a242c;--card:#0e2d36;--line:#163b46;--ink:#eaf7f8;--mut:#7fa6ad;
+  --teal:#19c6c0;--teal2:#0a96ac;--aqua:#2fe0d6;--coral:#fb5733;--coral2:#ff7a59;
+  --good:#26d07c;--warn:#ffb02e;--bad:#ef3d5e;
+  --head:"Bricolage Grotesque",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#0c343d,transparent),var(--bg);color:var(--ink);font:15px/1.5 var(--body);min-height:100vh}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 18px 60px}
+h1,h2,h3{font-family:var(--head);letter-spacing:-.02em;margin:0}
+a{color:var(--aqua)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--head);font-weight:800;font-size:22px}
+.drop{width:16px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(45deg);background:linear-gradient(135deg,var(--aqua),var(--teal2));box-shadow:0 0 14px rgba(47,224,214,.4)}
+.brand small{font-family:var(--body);font-weight:600;font-size:10px;color:var(--mut);border:1px solid var(--line);padding:2px 8px;border-radius:7px;letter-spacing:.1em;transform:none}
+.sub{color:var(--mut);font-size:13px;margin:2px 0 18px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);display:inline-flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%}
+.dot.on{background:var(--good);box-shadow:0 0 8px var(--good)} .dot.off{background:var(--bad)}
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:8px 0 22px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 14px}
+.kpi .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);font-weight:700}
+.kpi .val{font-family:var(--head);font-size:26px;font-weight:800;margin-top:5px;line-height:1}
+.kpi .val.coral{color:var(--coral2)} .kpi .val.teal{color:var(--aqua)}
+.kpi .sub2{font-size:11px;color:var(--mut);margin-top:4px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:18px}
+.panel h2{font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.panel h2 .tag{font-family:var(--body);font-size:11px;color:var(--mut);font-weight:600;border:1px solid var(--line);padding:2px 8px;border-radius:6px}
+/* funnel */
+.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.fstep{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-align:center;position:relative}
+.fstep .fl{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.fstep .fv{font-family:var(--head);font-size:23px;font-weight:800;margin-top:5px}
+.fstep .fr{font-size:11px;color:var(--teal);margin-top:3px}
+.fstep:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--mut);font-size:14px;z-index:2}
+/* table */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:10px 10px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:700}
+tbody tr:hover{background:rgba(25,198,192,.05)}
+tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:var(--ink)}
+.geo{display:inline-flex;align-items:center;gap:7px;font-weight:700}
+.muted{color:var(--mut)}
+.banner{background:linear-gradient(90deg,rgba(251,87,51,.14),transparent);border:1px solid rgba(251,87,51,.3);border-left:4px solid var(--coral);border-radius:12px;padding:12px 15px;font-size:13px;margin-bottom:18px}
+.banner b{color:var(--coral2)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pace{display:flex;align-items:center;gap:14px}
+.ring{--p:0;width:74px;height:74px;border-radius:50%;flex:none;background:conic-gradient(var(--teal) calc(var(--p)*1%),var(--bg2) 0);display:grid;place-content:center}
+.ring i{width:58px;height:58px;border-radius:50%;background:var(--card);display:grid;place-content:center;font-family:var(--head);font-weight:800;font-size:15px;font-style:normal}
+.foot{color:var(--mut);font-size:12px;margin-top:24px;text-align:center}
+@media(max-width:820px){.cards{grid-template-columns:repeat(3,1fr)}.funnel{grid-template-columns:1fr 1fr}.fstep::after{display:none}.row2{grid-template-columns:1fr}}
+@media(max-width:480px){.cards{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="brand"><span class="drop"></span>Jetterix <small>COMMAND CENTER</small></div>
+      <div class="sub" id="sub">Loading…</div>
+    </div>
+    <div class="pills">
+      <span class="pill"><span class="dot off" id="gscDot"></span><span id="gscTxt">GSC</span></span>
+      <span class="pill"><span class="dot off" id="oaDot"></span><span id="oaTxt">OasisAds</span></span>
+    </div>
+  </div>
+
+  <div id="banner"></div>
+
+  <div class="cards" id="kpis"></div>
+
+  <div class="panel">
+    <h2>Acquisition → Revenue funnel <span class="tag" id="funnelRange">—</span></h2>
+    <div class="funnel" id="funnel"></div>
+  </div>
+
+  <div class="row2">
+    <div class="panel">
+      <h2>Pace to target</h2>
+      <div class="pace">
+        <div class="ring" id="ring"><i id="ringTxt">0%</i></div>
+        <div>
+          <div id="paceMain" style="font-family:var(--head);font-weight:800;font-size:18px">0 / 50 conv/day</div>
+          <div class="muted" style="font-size:12.5px;margin-top:4px" id="paceSub">No conversions yet — new offer.</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Network payout <span class="tag">per sale</span></h2>
+      <div id="payout" style="font-size:13.5px;line-height:1.9"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>By geo</h2>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Geo</th><th>Impr.</th><th>Site clicks</th><th>CTR</th><th>Pos.</th>
+        <th>Offer clicks</th><th>Conv.</th><th>CR</th><th>Revenue</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+      <tfoot id="foot"></tfoot>
+    </table>
+    </div>
+  </div>
+
+  <div class="foot" id="foot2"></div>
+</div>
+
+<script>
+const FLAG={us:"🇺🇸",uk:"🇬🇧",au:"🇦🇺",de:"🇩🇪",fr:"🇫🇷"};
+const NAME={us:"US",uk:"UK",au:"AU",de:"DE",fr:"FR"};
+const GEOS=["us","uk","au","de","fr"];
+const fmt=n=>n>=1000?(n/1000).toFixed(n>=10000?0:1)+"k":(""+Math.round(n));
+const money=n=>"$"+(Math.round(n*100)/100).toLocaleString();
+
+fetch("data.json?t="+Date.now()).then(r=>r.json()).then(render).catch(e=>{
+  document.getElementById("sub").textContent="Could not load data.json";
+});
+
+function render(d){
+  const gsc=d.gsc||{}, oa=d.oasis||{};
+  document.getElementById("sub").textContent="Updated "+new Date(d.updated).toLocaleString()+" · "+(d.range||"");
+  document.getElementById("funnelRange").textContent=d.range||"";
+  // status pills
+  setDot("gsc", gsc.connected, "GSC "+(gsc.connected?"live":"not connected"));
+  setDot("oa", oa.connected, "OasisAds "+(oa.connected?"live":"no data yet"));
+
+  // aggregate
+  let T={impr:0,clicks:0,offer:0,conv:0,rev:0,posW:0,posN:0};
+  const rowsHtml=GEOS.map(g=>{
+    const G=gsc.geos?.[g]||{}, O=oa.geos?.[g]||{};
+    const impr=G.impr||0, clk=G.clicks||0, pos=G.pos||0, off=O.clicks||0, cv=O.conv||0, rev=O.revenue||0;
+    T.impr+=impr;T.clicks+=clk;T.offer+=off;T.conv+=cv;T.rev+=rev;
+    if(impr>0){T.posW+=pos*impr;T.posN+=impr;}
+    const ctr=impr?((clk/impr*100).toFixed(1)+"%"):"—";
+    const cr=off?((cv/off*100).toFixed(1)+"%"):"—";
+    return `<tr><td><span class="geo">${FLAG[g]} ${NAME[g]}</span></td>
+      <td>${impr?fmt(impr):'<span class=muted>0</span>'}</td><td>${clk||0}</td><td>${ctr}</td>
+      <td>${pos?pos.toFixed(1):'—'}</td><td>${off||0}</td><td>${cv||0}</td><td>${cr}</td>
+      <td>${rev?money(rev):'<span class=muted>$0</span>'}</td></tr>`;
+  }).join("");
+  document.getElementById("rows").innerHTML=rowsHtml;
+  const avgPos=T.posN?(T.posW/T.posN):0;
+  const ctrT=T.impr?((T.clicks/T.impr*100).toFixed(1)+"%"):"—";
+  const crT=T.offer?((T.conv/T.offer*100).toFixed(1)+"%"):"—";
+  document.getElementById("foot").innerHTML=`<tr><td>Total</td><td>${fmt(T.impr)}</td><td>${T.clicks}</td>
+    <td>${ctrT}</td><td>${avgPos?avgPos.toFixed(1):'—'}</td><td>${T.offer}</td><td>${T.conv}</td><td>${crT}</td><td>${money(T.rev)}</td></tr>`;
+
+  // KPIs
+  const epc=T.offer?(T.rev/T.offer):0;
+  const kpis=[
+    ["Impressions",fmt(T.impr),"teal","Google search"],
+    ["Site clicks",T.clicks,"teal",ctrT+" CTR"],
+    ["Offer clicks",T.offer,"","to merchant"],
+    ["Conversions",T.conv,"coral",crT+" CR"],
+    ["Revenue",money(T.rev),"coral",""],
+    ["EPC",money(epc),"","per offer click"],
+  ];
+  document.getElementById("kpis").innerHTML=kpis.map(k=>`<div class="kpi"><div class="lbl">${k[0]}</div>
+    <div class="val ${k[2]}">${k[1]}</div><div class="sub2">${k[3]}</div></div>`).join("");
+
+  // funnel
+  const F=[["Impressions",fmt(T.impr),""],["Site clicks",T.clicks,ctrT],["Offer clicks",T.offer,T.clicks?Math.round(T.offer/T.clicks*100)+"%":""],
+           ["Conversions",T.conv,crT],["Revenue",money(T.rev),""]];
+  document.getElementById("funnel").innerHTML=F.map(f=>`<div class="fstep"><div class="fl">${f[0]}</div><div class="fv">${f[1]}</div><div class="fr">${f[2]||"&nbsp;"}</div></div>`).join("");
+
+  // pace
+  const target=d.target_conv_per_day||50;
+  const perDay=T.conv/7;
+  const pct=Math.min(100,Math.round(perDay/target*100));
+  const ring=document.getElementById("ring"); ring.style.setProperty("--p",pct);
+  document.getElementById("ringTxt").textContent=pct+"%";
+  document.getElementById("paceMain").textContent=(Math.round(perDay*10)/10)+" / "+target+" conv/day";
+
+  // payout
+  const pay=oa.payout||{};
+  document.getElementById("payout").innerHTML=GEOS.map(g=>`${FLAG[g]} ${NAME[g]} &nbsp;<b style="color:var(--aqua)">$${pay[g]||55}</b> <span class="muted">Oasis</span>`).join(" &nbsp;·&nbsp; ")
+    +`<div class="muted" style="margin-top:8px;font-size:12px">Blitz fallback — DE $50 · FR $60 (flip FR to Blitz if Oasis scrubs)</div>`;
+
+  // notes
+  document.getElementById("foot2").innerHTML=[gsc.note,oa.note].filter(Boolean).join(" &nbsp;|&nbsp; ");
+}
+function setDot(id,on,txt){document.getElementById(id+"Dot").className="dot "+(on?"on":"off");document.getElementById(id+"Txt").textContent=txt;}
+</script>
+</body>
+</html>
