@@ -286,7 +286,7 @@ function render(d){
   document.getElementById("funnelRange").textContent=d.range||"";
   // status pills
   setDot("gsc", gsc.connected, "GSC "+(gsc.connected?"live":"not connected"));
-  setDot("oa", oa.connected, "OasisAds "+(oa.connected?"live":"no data yet"));
+  setDot("oa", oa.connected, oa.connected?"OasisAds live":"OasisAds armed · awaiting 1st click");
 
   // aggregate
   let T={impr:0,clicks:0,offer:0,conv:0,rev:0,posW:0,posN:0};

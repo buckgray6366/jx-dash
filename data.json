@@ -40,7 +40,7 @@
   },
   "oasis": {
     "connected": false,
-    "note": "OasisAds (trkc115) per geo, subid s2=jx-<geo>. Stealth Playwright pull; no clicks yet (new offer).",
+    "note": "Tracking armed via s2=jx-<geo>. 0 clicks = no traffic yet (site indexed today, no visitors). Offer IS live. Panel auto-pull blocked by their CloudFront/IP gate → realtime via postback once configured.",
     "payout": {
       "us": 55,
       "uk": 55,
