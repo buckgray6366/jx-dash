@@ -28,7 +28,11 @@ a{color:var(--aqua)}
 .pills{display:flex;gap:8px;flex-wrap:wrap}
 .pill{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);display:inline-flex;align-items:center;gap:6px}
 .dot{width:8px;height:8px;border-radius:50%}
-.dot.on{background:var(--good);box-shadow:0 0 8px var(--good)} .dot.off{background:var(--bad)}
+.dot.on{background:var(--good);box-shadow:0 0 8px var(--good);animation:blink 1.6s infinite} .dot.off{background:var(--bad)}
+@keyframes blink{50%{opacity:.4}}
+.ctl{font:inherit;font-size:12.5px;font-weight:700;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+.ctl:hover{border-color:var(--teal)}
+.btn-r{color:#04201f;background:linear-gradient(180deg,var(--teal),var(--teal2));border:0}
 .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:8px 0 22px}
 .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 14px}
 .kpi .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);font-weight:700}
@@ -73,6 +77,17 @@ tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:
       <div class="sub" id="sub">Loading…</div>
     </div>
     <div class="pills">
+      <select id="range" class="ctl" title="Date range">
+        <option value="today">Today</option>
+        <option value="yesterday">Yesterday</option>
+        <option value="7" selected>Last 7 days</option>
+        <option value="28">Last 28 days</option>
+        <option value="month">This month</option>
+        <option value="lastmonth">Last month</option>
+        <option value="90">Last 3 months</option>
+      </select>
+      <button id="refresh" class="ctl btn-r">↻ Refresh</button>
+      <span class="pill"><span class="dot off" id="liveDot"></span><span id="liveTxt">connecting…</span></span>
       <span class="pill"><span class="dot off" id="gscDot"></span><span id="gscTxt">GSC</span></span>
       <span class="pill"><span class="dot off" id="oaDot"></span><span id="oaTxt">OasisAds</span></span>
     </div>
@@ -85,6 +100,12 @@ tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:
   <div class="panel">
     <h2>Acquisition → Revenue funnel <span class="tag" id="funnelRange">—</span></h2>
     <div class="funnel" id="funnel"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Indexing status <span class="tag" id="idxGen">live</span></h2>
+    <div id="idxFunnel" class="funnel" style="grid-template-columns:repeat(4,1fr)"></div>
+    <div id="idxList" style="margin-top:14px;display:flex;flex-direction:column;gap:7px"></div>
   </div>
 
   <div class="row2">
@@ -128,9 +149,61 @@ const GEOS=["us","uk","au","de","fr"];
 const fmt=n=>n>=1000?(n/1000).toFixed(n>=10000?0:1)+"k":(""+Math.round(n));
 const money=n=>"$"+(Math.round(n*100)/100).toLocaleString();
 
-fetch("data.json?t="+Date.now()).then(r=>r.json()).then(render).catch(e=>{
-  document.getElementById("sub").textContent="Could not load data.json";
-});
+const WORKER="https://jx-gsc.jetterix.workers.dev";
+let BASE=null, LIVE=null;
+const $=id=>document.getElementById(id);
+
+function rangeDates(v){
+  const t=new Date(), u=d=>d.toISOString().slice(0,10), end=u(t);
+  if(v==="today")return{start:end,end};
+  if(v==="yesterday"){const y=u(new Date(t.getTime()-864e5));return{start:y,end:y};}
+  if(v==="month")return{start:u(new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),1))),end};
+  if(v==="lastmonth"){const s=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth()-1,1)),e=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),0));return{start:u(s),end:u(e)};}
+  const days=parseInt(v,10)||7;return{start:u(new Date(t.getTime()-(days-1)*864e5)),end};
+}
+function setLive(txt,on){$("liveDot").className="dot "+(on?"on":"off");$("liveTxt").textContent=txt;}
+
+async function loadAll(){
+  const sel=$("range"), v=sel.value, lbl=sel.selectedOptions[0].textContent;
+  const {start,end}=rangeDates(v);
+  if(!BASE){try{BASE=await (await fetch("data.json?t="+Date.now())).json();}catch(e){BASE={gsc:{},oasis:{}};}}
+  setLive("connecting…",false);
+  let live=null;
+  try{
+    const c=new AbortController(), to=setTimeout(()=>c.abort(),28000);
+    const r=await fetch(WORKER+`?start=${start}&end=${end}`,{signal:c.signal,cache:"no-store"});
+    clearTimeout(to); const j=await r.json();
+    if(j&&j.gsc&&!j.error) live=j;
+  }catch(e){}
+  LIVE=live;
+  render({
+    gsc: live? live.gsc : (BASE.gsc||{}),
+    oasis: BASE.oasis||{},
+    target_conv_per_day: BASE.target_conv_per_day||50,
+    range: lbl,
+    updated: live? live.generatedAt : (BASE.updated||new Date().toISOString())
+  });
+  $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+") · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
+  setLive(live?"live":"cached",!!live);
+  renderIndex(live);
+}
+function renderIndex(live){
+  const f=(live&&live.funnel)||{indexed:0,crawled:0,discovered:0,unknown:0};
+  const cards=[["Indexed",f.indexed,"var(--good)"],["Crawled · not indexed",f.crawled,""],["Discovered",f.discovered,"var(--coral2)"],["Not yet found",f.unknown,""]];
+  $("idxFunnel").innerHTML=cards.map(c=>`<div class="fstep"><div class="fl">${c[0]}</div><div class="fv" style="${c[2]?'color:'+c[2]:''}">${c[1]}</div></div>`).join("");
+  const idx=(live&&live.index)||[];
+  $("idxList").innerHTML=idx.length? idx.map(i=>{
+    const p=i.url.replace("https://tryjetterix.com","")||"/";
+    const ok=/indexed/i.test(i.coverage)&&!/not/i.test(i.coverage);
+    const col=ok?"var(--good)":/discover|crawled/i.test(i.coverage)?"var(--warn)":"var(--mut)";
+    return `<div style="display:flex;justify-content:space-between;gap:10px;font-size:13px;border-bottom:1px solid var(--line);padding:5px 0"><span><b>${p}</b></span><span style="color:${col};font-weight:700">${i.coverage}${i.lastCrawl?" · "+i.lastCrawl.slice(0,10):""}</span></div>`;
+  }).join("") : '<div class="muted">Refresh to load index status.</div>';
+  $("idxGen").textContent=live?"live":"cached";
+}
+document.getElementById("refresh").addEventListener("click",loadAll);
+document.getElementById("range").addEventListener("change",loadAll);
+setInterval(loadAll,90000);  // auto-refresh every 90s
+loadAll();
 
 function render(d){
   const gsc=d.gsc||{}, oa=d.oasis||{};
