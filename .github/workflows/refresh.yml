@@ -1,7 +1,7 @@
-name: Refresh dashboard data (GSC)
+name: Refresh dashboard data (GSC + OasisAds)
 on:
   schedule:
-    - cron: "17 6,16 * * *"   # twice daily
+    - cron: "*/30 * * * *"   # every 30 min (near-realtime)
   workflow_dispatch: {}
 permissions:
   contents: write
@@ -16,7 +16,13 @@ jobs:
       - name: Pull Google Search Console
         env:
           GSC_SA_JSON: ${{ secrets.GSC_SA_JSON }}
-        run: python3 pull_gsc.py
+        run: python3 pull_gsc.py || echo "GSC pull skipped"
+      - name: Pull OasisAds reporting (via Gonzo residential proxy)
+        env:
+          GONZO_KEY: ${{ secrets.GONZO_KEY }}
+          OASIS_USER: ${{ secrets.OASIS_USER }}
+          OASIS_PASS: ${{ secrets.OASIS_PASS }}
+        run: python3 pull_oasis.py || echo "OasisAds pull skipped (proxy/login) — keeping prior data"
       - name: Commit if changed
         run: |
           git config user.name "jetterix-bot"
