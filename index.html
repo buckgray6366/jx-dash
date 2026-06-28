@@ -65,6 +65,13 @@ tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:
 .ring{--p:0;width:74px;height:74px;border-radius:50%;flex:none;background:conic-gradient(var(--teal) calc(var(--p)*1%),var(--bg2) 0);display:grid;place-content:center}
 .ring i{width:58px;height:58px;border-radius:50%;background:var(--card);display:grid;place-content:center;font-family:var(--head);font-weight:800;font-size:15px;font-style:normal}
 .foot{color:var(--mut);font-size:12px;margin-top:24px;text-align:center}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.barrow{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:13px}
+.barrow .bl{flex:0 0 90px;color:var(--mut);text-transform:capitalize}
+.barrow .bt{flex:1;height:8px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.barrow .bt i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--aqua));border-radius:99px;transition:width .6s}
+.barrow .bv{flex:0 0 auto;color:var(--ink);font-weight:600}
+.muted{color:var(--mut)}
 @media(max-width:820px){.cards{grid-template-columns:repeat(3,1fr)}.funnel{grid-template-columns:1fr 1fr}.fstep::after{display:none}.row2{grid-template-columns:1fr}}
 @media(max-width:480px){.cards{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -106,6 +113,31 @@ tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:
     <h2>Indexing status <span class="tag" id="idxGen">live</span></h2>
     <div id="idxFunnel" class="funnel" style="grid-template-columns:repeat(4,1fr)"></div>
     <div id="idxList" style="margin-top:14px;display:flex;flex-direction:column;gap:7px"></div>
+  </div>
+
+  <div class="panel">
+    <h2>🏆 Milestone tracker <span class="tag" id="bestPos">—</span></h2>
+    <div id="milestones" class="funnel" style="grid-template-columns:repeat(5,1fr)"></div>
+  </div>
+
+  <div class="row2">
+    <div class="panel"><h2>⚡ Live impressions · 24h <span class="tag">hourly</span></h2><div id="hourly"></div></div>
+    <div class="panel"><h2>📈 Daily trend · 28 days</h2><div id="daily"></div></div>
+  </div>
+
+  <div class="row2">
+    <div class="panel"><h2>📱 Device split</h2><div id="device"></div></div>
+    <div class="panel"><h2>🎯 Brand-SERP <span class="tag">jetterix queries</span></h2><div id="brand" style="overflow-x:auto"></div></div>
+  </div>
+
+  <div class="panel">
+    <h2>🚀 Striking-distance opportunities <span class="tag">position 3–20 = quick wins</span></h2>
+    <div id="opp" style="overflow-x:auto"></div>
+  </div>
+
+  <div class="panel">
+    <h2>🔀 Keyword cannibalization</h2>
+    <div id="cannibal"></div>
   </div>
 
   <div class="row2">
@@ -186,6 +218,7 @@ async function loadAll(){
   $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+") · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
   setLive(live?"live":"cached",!!live);
   renderIndex(live);
+  renderRich(live);
 }
 function renderIndex(live){
   const f=(live&&live.funnel)||{indexed:0,crawled:0,discovered:0,unknown:0};
@@ -200,8 +233,50 @@ function renderIndex(live){
   }).join("") : '<div class="muted">Refresh to load index status.</div>';
   $("idxGen").textContent=live?"live":"cached";
 }
+/* ---- rich GSC panels (Coolizi-parity) ---- */
+const F=n=>n>=1000?(n/1000).toFixed(n>=10000?0:1)+"k":(""+Math.round(n||0));
+function posBadge(p){if(!p)return'<span class="muted">—</span>';const c=p<=3?"var(--good)":p<=10?"var(--warn)":"var(--coral2)";return `<span style="color:${c};font-weight:700">${(Math.round(p*10)/10)}</span>`;}
+function areaChart(points,key,w=560,h=140){
+  if(!points||!points.length)return '<div class="muted" style="padding:18px 0">No hourly data yet — fills in once Google logs search traffic.</div>';
+  const max=Math.max(1,...points.map(p=>p[key]||0)),pad=22,iw=w-pad*2,ih=h-pad-12;
+  const X=i=>pad+(points.length<2?iw/2:i/(points.length-1)*iw),Y=v=>pad+ih-(v/max*ih);
+  let d=`M ${X(0)} ${Y(points[0][key]||0)}`;points.forEach((p,i)=>{if(i)d+=` L ${X(i)} ${Y(p[key]||0)}`;});
+  const area=d+` L ${X(points.length-1)} ${pad+ih} L ${X(0)} ${pad+ih} Z`;
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2fe0d6" stop-opacity=".4"/><stop offset="1" stop-color="#2fe0d6" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#ag)"/><path d="${d}" fill="none" stroke="#2fe0d6" stroke-width="2.5" stroke-linecap="round"/></svg>`;
+}
+function lineChart(points,w=560,h=140){
+  if(!points||!points.length)return '<div class="muted" style="padding:18px 0">No daily data yet — the 28-day trend builds from here.</div>';
+  if(points.length<2){const p=points[0]||{};return `<div class="muted" style="padding:18px 0">Day 1: <b style="color:var(--ink)">${F(p.impressions)}</b> impressions, <b style="color:var(--good)">${F(p.clicks)}</b> clicks.</div>`;}
+  const max=Math.max(1,...points.map(p=>p.impressions||0)),pad=24,iw=w-pad*2,ih=h-pad-14;
+  const X=i=>pad+i/(points.length-1)*iw,Y=v=>pad+ih-(v/max*ih);
+  const d=points.map((p,i)=>`${i?'L':'M'} ${X(i)} ${Y(p.impressions||0)}`).join(' ');
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%"><path d="${d}" fill="none" stroke="#fb5733" stroke-width="2.5"/></svg>`;
+}
+function renderRich(live){
+  if(!live){["milestones","hourly","daily","device","brand","opp","cannibal"].forEach(id=>$(id).innerHTML='<div class="muted" style="padding:14px 0">Connecting…</div>');return;}
+  const m=live.milestones||{};
+  $("bestPos").textContent="best pos "+(m.best_position&&m.best_position<99?m.best_position:"—");
+  const ms=[["Pages indexed",(m.indexed_pages||0)+"/6",(m.indexed_pages>=6?"var(--good)":"var(--warn)")],
+    ["First impression",m.first_impression?"✓":"—",m.first_impression?"var(--good)":"var(--mut)"],
+    ["First click",m.first_click?"✓":"—",m.first_click?"var(--good)":"var(--mut)"],
+    ["Top 10",m.top10?"✓":"—",m.top10?"var(--good)":"var(--mut)"],
+    ["#1 rank",m.number1?"✓":"—",m.number1?"var(--good)":"var(--mut)"]];
+  $("milestones").innerHTML=ms.map(c=>`<div class="fstep"><div class="fl">${c[0]}</div><div class="fv" style="color:${c[2]};font-size:19px">${c[1]}</div></div>`).join("");
+  $("hourly").innerHTML=areaChart(live.hourly,"impressions");
+  $("daily").innerHTML=lineChart(live.daily);
+  const dev=live.device||[];
+  $("device").innerHTML=dev.length?dev.map(d=>{const tot=dev.reduce((a,x)=>a+x.impressions,0)||1;const pct=Math.round(d.impressions/tot*100);return `<div class="barrow"><span class="bl">${(d.device||'').toLowerCase()}</span><span class="bt"><i style="width:${pct}%"></i></span><span class="bv">${F(d.impressions)} · ${pct}%</span></div>`;}).join(""):'<div class="muted" style="padding:14px 0">No device data yet.</div>';
+  const br=live.brand||[];
+  $("brand").innerHTML=br.length?`<table><thead><tr><th>Brand query</th><th class="num">Impr</th><th class="num">Clicks</th><th>Pos</th></tr></thead><tbody>`+br.slice(0,12).map(r=>`<tr><td>${r.q}</td><td class="num">${F(r.impressions)}</td><td class="num">${r.clicks}</td><td>${posBadge(r.position)}</td></tr>`).join("")+`</tbody></table>`:'<div class="muted" style="padding:14px 0">No "jetterix…" queries logged yet — appears once you start ranking.</div>';
+  const op=live.opportunities||[];
+  $("opp").innerHTML=op.length?`<table><thead><tr><th>Query</th><th class="num">Impr</th><th>Pos</th><th>Move</th></tr></thead><tbody>`+op.map(r=>`<tr><td>${r.q}</td><td class="num">${F(r.impressions)}</td><td>${posBadge(r.position)}</td><td class="muted">${r.hint}</td></tr>`).join("")+`</tbody></table>`:'<div class="muted" style="padding:14px 0">None yet — these are queries ranking #3–20 that a small push lands on page 1. Populates as you rank.</div>';
+  const ca=live.cannibal||[];
+  $("cannibal").innerHTML=ca.length?ca.map(c=>`<div style="padding:8px 0;border-bottom:1px solid var(--line)"><b>${c.q}</b><div style="margin-top:5px;display:flex;gap:7px;flex-wrap:wrap">${c.pages.map(p=>`<span style="background:var(--bg2);padding:3px 8px;border-radius:6px;border:1px solid var(--line);font-size:12px">${p.page.replace("https://tryjetterix.com","")||"/"} · ${F(p.impressions)} · ${posBadge(p.position)}</span>`).join("")}</div></div>`).join(""):'<div class="muted" style="padding:14px 0">✓ No cannibalization — each query maps cleanly to one page.</div>';
+}
+/* remember the selected date range across reloads */
+try{const sv=localStorage.getItem("jx_range");if(sv)$("range").value=sv;}catch(e){}
 document.getElementById("refresh").addEventListener("click",loadAll);
-document.getElementById("range").addEventListener("change",loadAll);
+document.getElementById("range").addEventListener("change",function(){try{localStorage.setItem("jx_range",this.value);}catch(e){}loadAll();});
 setInterval(loadAll,90000);  // auto-refresh every 90s
 loadAll();
 
