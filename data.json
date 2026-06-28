@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-28T20:32:57Z",
+  "updated": "2026-06-28T22:24:40Z",
   "range": "Last 7 days",
   "target_conv_per_day": 50,
   "gsc": {
@@ -39,8 +39,8 @@
     }
   },
   "oasis": {
-    "connected": false,
-    "note": "Tracking armed via s2=jx-<geo>. 0 clicks = no traffic yet (site indexed today, no visitors). Offer IS live. Panel auto-pull blocked by their CloudFront/IP gate → realtime via postback once configured.",
+    "connected": true,
+    "note": "Live from OasisAds reporting (residential pull). 'partials' = checkout-started, not yet paid.",
     "payout": {
       "us": 55,
       "uk": 55,
@@ -50,30 +50,49 @@
     },
     "geos": {
       "us": {
-        "clicks": 0,
+        "clicks": 5,
         "conv": 0,
-        "revenue": 0
+        "revenue": 0.0
       },
       "uk": {
         "clicks": 0,
         "conv": 0,
-        "revenue": 0
+        "revenue": 0.0
       },
       "au": {
         "clicks": 0,
         "conv": 0,
-        "revenue": 0
+        "revenue": 0.0
       },
       "de": {
         "clicks": 0,
         "conv": 0,
-        "revenue": 0
+        "revenue": 0.0
       },
       "fr": {
         "clicks": 0,
         "conv": 0,
-        "revenue": 0
+        "revenue": 0.0
       }
+    },
+    "partials": {
+      "us": 0,
+      "uk": 0,
+      "au": 0,
+      "de": 0,
+      "fr": 0
+    },
+    "totals": {
+      "clicks": 5,
+      "conv": 0,
+      "partials": 0,
+      "revenue": 0.0
+    },
+    "account_total": {
+      "clicks": 20,
+      "conv": 0,
+      "partials": 9,
+      "revenue": 0.0
     }
   }
 }

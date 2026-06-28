@@ -209,12 +209,10 @@ async function loadAll(){
     if(j&&j.gsc&&!j.error) live=j;
   }catch(e){}
   LIVE=live;
-  let pb=null;
-  try{ const pr=await fetch(POSTBACK+"?t="+Date.now(),{cache:"no-store"}); const pj=await pr.json(); if(pj&&pj.geos) pb=pj; }catch(e){}
-  const oa = pb ? { connected: (pb.count||0)>0, geos: pb.geos, payout:(BASE.oasis||{}).payout, note:(BASE.oasis||{}).note } : (BASE.oasis||{});
+  // OasisAds = direct reporting (pulled via residential proxy into data.json); single source of truth.
   render({
     gsc: live? live.gsc : (BASE.gsc||{}),
-    oasis: oa,
+    oasis: BASE.oasis||{},
     target_conv_per_day: BASE.target_conv_per_day||50,
     range: lbl,
     updated: live? live.generatedAt : (BASE.updated||new Date().toISOString())
