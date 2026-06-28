@@ -185,13 +185,19 @@ const WORKER="https://jx-gsc.jetterix.workers.dev";
 let BASE=null, LIVE=null;
 const $=id=>document.getElementById(id);
 
+// All date windows computed in the NETWORK timezone (OasisAds = a US network reporting in ET),
+// so the dashboard's days match OasisAds' reporting days exactly. GSC is queried for the same calendar dates.
+const NET_TZ="America/New_York";
+function etToday(){return new Intl.DateTimeFormat("en-CA",{timeZone:NET_TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());}
+function _ymd(d){return d.toISOString().slice(0,10);}
+function _shift(s,n){const d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+n);return _ymd(d);}
 function rangeDates(v){
-  const t=new Date(), u=d=>d.toISOString().slice(0,10), end=u(t);
-  if(v==="today")return{start:end,end};
-  if(v==="yesterday"){const y=u(new Date(t.getTime()-864e5));return{start:y,end:y};}
-  if(v==="month")return{start:u(new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),1))),end};
-  if(v==="lastmonth"){const s=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth()-1,1)),e=new Date(Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),0));return{start:u(s),end:u(e)};}
-  const days=parseInt(v,10)||7;return{start:u(new Date(t.getTime()-(days-1)*864e5)),end};
+  const t=etToday();
+  if(v==="today")return{start:t,end:t};
+  if(v==="yesterday"){const y=_shift(t,-1);return{start:y,end:y};}
+  if(v==="month")return{start:t.slice(0,8)+"01",end:t};
+  if(v==="lastmonth"){const le=_shift(t.slice(0,8)+"01",-1);return{start:le.slice(0,8)+"01",end:le};}
+  const days=parseInt(v,10)||7;return{start:_shift(t,-(days-1)),end:t};
 }
 function setLive(txt,on){$("liveDot").className="dot "+(on?"on":"off");$("liveTxt").textContent=txt;}
 
@@ -216,7 +222,7 @@ async function loadAll(){
     range: lbl,
     updated: live? live.generatedAt : (BASE.updated||new Date().toISOString())
   });
-  $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+") · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
+  $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+", ET) · all windows in ET / network time · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
   setLive(live?"live":"cached",!!live);
   renderIndex(live);
   renderRich(live);
