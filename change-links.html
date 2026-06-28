@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Jetterix — How to change affiliate links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#05171c;--card:#0e2d36;--line:#163b46;--ink:#eaf7f8;--mut:#88aab1;--teal:#19c6c0;--aqua:#2fe0d6;--coral:#fb5733;--good:#26d07c;--warn:#ffb02e;--head:"Bricolage Grotesque",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 480px at 82% -8%,#0c343d,transparent),var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+.wrap{max-width:860px;margin:0 auto;padding:24px 18px 70px}
+h1,h2,h3{font-family:var(--head);letter-spacing:-.02em;margin:0}
+a{color:var(--aqua);font-weight:600}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--head);font-weight:800;font-size:23px}
+.drop{width:16px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(45deg);background:linear-gradient(135deg,var(--aqua),#0a96ac);box-shadow:0 0 14px rgba(47,224,214,.4)}
+.tag{font-family:var(--body);font-weight:700;font-size:10px;color:var(--coral);border:1px solid var(--line);padding:3px 9px;border-radius:7px;letter-spacing:.1em}
+.sub{color:var(--mut);font-size:13px;margin:5px 0 22px}
+.back{font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:16px}
+.card h2{font-size:16px;color:var(--aqua);margin-bottom:12px}
+.step{display:flex;gap:13px;padding:9px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.step .n{flex:none;width:26px;height:26px;border-radius:50% 50% 50% 8px;background:linear-gradient(150deg,var(--teal),#0a96ac);color:#04201f;display:grid;place-content:center;font-family:var(--head);font-weight:800;font-size:13px}
+.step .t{flex:1}
+.step b{color:#fff} .step code{background:#05171c;border:1px solid var(--line);padding:1px 6px;border-radius:5px;font-size:12.5px;color:var(--aqua)}
+.note{background:linear-gradient(90deg,rgba(255,176,46,.13),transparent);border:1px solid rgba(255,176,46,.3);border-left:4px solid var(--warn);border-radius:11px;padding:11px 14px;font-size:13px;margin-top:10px}
+.note b{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{color:var(--mut);text-transform:uppercase;font-size:10.5px;letter-spacing:.05em}
+.lk{display:flex;gap:8px;align-items:center}
+.lk code{flex:1;background:#05171c;border:1px solid var(--line);padding:5px 8px;border-radius:7px;font-size:11.5px;color:#bfe9e6;overflow:auto;white-space:nowrap}
+.copy{flex:none;background:var(--teal);color:#04201f;border:0;border-radius:7px;padding:5px 11px;font-weight:800;font-size:11.5px;cursor:pointer;font-family:var(--body)}
+.copy.done{background:var(--good)}
+ul{margin:6px 0 0;padding-left:18px} li{padding:2px 0;color:#cfe7ea}
+.foot{color:var(--mut);font-size:11.5px;text-align:center;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">← Back to dashboard</a>
+  <div class="brand" style="margin-top:10px"><span class="drop"></span>Change affiliate links <span class="tag">TEAM GUIDE</span></div>
+  <div class="sub">How to point any country to a different offer/network. No coding, no rebuild — ~1 minute. Tracking stays intact automatically.</div>
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul>
+      <li>Switch a country to a different network (e.g. <b>FR → Blitz</b> if OasisAds scrubs)</li>
+      <li>Update to a new offer / creative the network gives you</li>
+      <li>Point a country to any new checkout link</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Steps (do this for each country you want to change)</h2>
+    <div class="step"><div class="n">1</div><div class="t">Open the links file: <a href="https://github.com/francistucker5374/tryjetterix/edit/main/assets/config.js" target="_blank">github.com/francistucker5374/tryjetterix → assets/config.js</a> (this link opens it in edit mode). Sign in if asked.</div></div>
+    <div class="step"><div class="n">2</div><div class="t">Scroll to the block titled <b>"⚙️ AFFILIATE LINKS — EDIT HERE"</b> (near the top).</div></div>
+    <div class="step"><div class="n">3</div><div class="t">Find the country line: <code>us</code> <code>uk</code> <code>au</code> <code>de</code> <code>fr</code>. Delete the <code>//</code> at the start of that line to switch it ON.</div></div>
+    <div class="step"><div class="n">4</div><div class="t">Paste the <b>full new link</b> between the quotes <code>" "</code>. Use the <b>Direct-to-Checkout (DTC)</b> link from the network. <b>Do NOT add s1/s2</b> — we attach the <code>jx-&lt;geo&gt;</code> tracking tag automatically.</div></div>
+    <div class="step"><div class="n">5</div><div class="t">Click the green <b>"Commit changes…"</b> button (top right) → <b>"Commit changes"</b> in the popup.</div></div>
+    <div class="step"><div class="n">6</div><div class="t">Wait <b>~1 minute</b>. That country now sends every "Buy" click to the new link. ✅ Done.</div></div>
+    <div class="note"><b>To undo:</b> open the same file, put the <code>//</code> back in front of that country's line, commit. It returns to the default OasisAds link.</div>
+  </div>
+
+  <div class="card">
+    <h2>Link reference — copy the one you need</h2>
+    <p style="color:var(--mut);font-size:12.5px;margin:0 0 8px">These are the base links (paste as-is; the <code>jx-&lt;geo&gt;</code> tag is added for you).</p>
+    <table>
+      <thead><tr><th>Geo</th><th>Network</th><th>Link (base)</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="note" style="border-left-color:var(--coral);background:linear-gradient(90deg,rgba(251,87,51,.12),transparent)"><b style="color:var(--coral)">Payout tip:</b> OasisAds pays $55 everywhere. Blitz pays <b>DE $50</b> · <b>FR $60</b> — so FR is the one geo where switching to Blitz earns more.</div>
+  </div>
+
+  <div class="foot">Confidential · internal · the live site is francistucker5374/tryjetterix · changes go live via GitHub Pages</div>
+</div>
+<script>
+const LINKS=[
+  ["🇺🇸 US","OasisAds","https://trkc115.com/c?p=P4016&o=O6887&cr=10810"],
+  ["🇬🇧 UK","OasisAds","https://trkc115.com/c?p=P4016&o=O6888&cr=10812"],
+  ["🇦🇺 AU","OasisAds","https://trkc115.com/c?p=P4016&o=O6889&cr=10814"],
+  ["🇩🇪 DE","OasisAds","https://trkc115.com/c?p=P4016&o=O6790&cr=10607"],
+  ["🇫🇷 FR","OasisAds","https://trkc115.com/c?p=P4016&o=O6791&cr=10609"],
+  ["🇩🇪 DE","Blitz ($50)","https://bikiraibn.com/?a=2397&c=9439"],
+  ["🇫🇷 FR","Blitz ($60)","https://bikiraibn.com/?a=2397&c=9566"],
+];
+document.getElementById("rows").innerHTML=LINKS.map((r,i)=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td>
+  <td><div class="lk"><code id="l${i}">${r[2]}</code><button class="copy" data-i="${i}">Copy</button></div></td></tr>`).join("");
+document.querySelectorAll(".copy").forEach(btn=>btn.addEventListener("click",function(){
+  const i=this.dataset.i, txt=document.getElementById("l"+i).textContent;
+  const done=()=>{this.textContent="✓ Copied";this.classList.add("done");setTimeout(()=>{this.textContent="Copy";this.classList.remove("done");},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallback(txt,done));}
+  else fallback(txt,done);
+}));
+function fallback(txt,done){const t=document.createElement("textarea");t.value=txt;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");done();}catch(e){}document.body.removeChild(t);}
+</script>
+</body>
+</html>
