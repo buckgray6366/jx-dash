@@ -178,5 +178,65 @@
   "status": "live",
   "shot": "bl/bl15.png",
   "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Telegraph",
+  "author": "Heike Sommer",
+  "title": "Jetterix im Langzeittest: hält die Düse, was sie verspricht?",
+  "anchor": "ausführlichen Jetterix Erfahrungsbericht",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://telegra.ph/Jetterix-im-Langzeittest-hält-die-Düse-was-sie-verspricht-06-29",
+  "status": "live",
+  "shot": "bl/bl16.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Rentry",
+  "author": "Bernd Klein",
+  "title": "Garten reinigen ohne teuren Hochdruckreiniger",
+  "anchor": "Jetterix Test mit Vor- und Nachteilen",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://rentry.co/83d98g72",
+  "status": "live",
+  "shot": "bl/bl17.png",
+  "verified": true
+ },
+ {
+  "lang": "fr",
+  "platform": "Telegraph",
+  "author": "Nathalie Roux",
+  "title": "Jetterix : la buse qui remplace le nettoyeur ?",
+  "anchor": "comparatif et avis sur Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://telegra.ph/Jetterix--la-buse-qui-remplace-le-nettoyeur-06-29",
+  "status": "live",
+  "shot": "bl/bl18.png",
+  "verified": true
+ },
+ {
+  "lang": "fr",
+  "platform": "Rentry",
+  "author": "Pascal Girard",
+  "title": "Mon avis sur la buse Jetterix après plusieurs lavages",
+  "anchor": "test complet de Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://rentry.co/ifizzado",
+  "status": "live",
+  "shot": "bl/bl19.png",
+  "verified": true
+ },
+ {
+  "lang": "en",
+  "platform": "Telegraph",
+  "author": "Megan Foster",
+  "title": "Jetterix Nozzle: Worth It or Just Hype?",
+  "anchor": "detailed Jetterix review",
+  "target": "https://tryjetterix.com/us/",
+  "url": "https://telegra.ph/Jetterix-Nozzle-Worth-It-or-Just-Hype-06-29",
+  "status": "live",
+  "shot": "bl/bl20.png",
+  "verified": true
  }
 ]
