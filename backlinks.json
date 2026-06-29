@@ -238,5 +238,41 @@
   "status": "live",
   "shot": "bl/bl20.png",
   "verified": true
+ },
+ {
+  "lang": "en",
+  "platform": "Medium",
+  "author": "nisha",
+  "title": "I Tested the Jetterix Pressure Nozzle for a Month — My Honest Verdict",
+  "anchor": "in-depth Jetterix review",
+  "target": "https://tryjetterix.com/us/",
+  "url": "https://medium.com/@nisha93verma50/i-tested-the-jetterix-pressure-nozzle-for-a-month-my-honest-verdict-68644e2d5091",
+  "status": "live",
+  "verified": true,
+  "shot": "bl/bl21.png"
+ },
+ {
+  "lang": "de",
+  "platform": "Blogger",
+  "author": "nisha",
+  "title": "Jetterix Erfahrungen: Mein ehrlicher Test der Hochdruckdüse",
+  "anchor": "ausführlichen Jetterix Erfahrungsbericht",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://jetterixd.blogspot.com/2026/06/jetterix-erfahrungen-mein-ehrlicher.html",
+  "status": "live",
+  "verified": true,
+  "shot": "bl/bl22.png"
+ },
+ {
+  "lang": "fr",
+  "platform": "Tumblr",
+  "author": "nisha",
+  "title": "Jetterix avis : mon test honnête de la buse haute pression",
+  "anchor": "avis détaillé sur Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://www.tumblr.com/nisha93verma50",
+  "status": "live",
+  "verified": true,
+  "shot": "bl/bl23.png"
  }
 ]
