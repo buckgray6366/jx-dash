@@ -1,8 +1,8 @@
 name: Refresh dashboard data (GSC + OasisAds)
 on:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 min (near-realtime)
-  workflow_dispatch: {}
+    - cron: "17 * * * *"     # hourly fallback (GitHub cron is throttled/unreliable)
+  workflow_dispatch: {}      # PRIMARY trigger: the jx-cron Cloudflare Worker fires this hourly (reliable)
 permissions:
   contents: write
 jobs:
