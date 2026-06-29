@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29T11:17:23Z",
+  "updated": "2026-06-29T12:17:22Z",
   "range": "Last 7 days",
   "target_conv_per_day": 50,
   "gsc": {
@@ -25,10 +25,10 @@
         "pos": 0
       },
       "de": {
-        "impr": 0,
+        "impr": 1,
         "clicks": 0,
-        "ctr": 0,
-        "pos": 0
+        "ctr": 0.0,
+        "pos": 8.0
       },
       "fr": {
         "impr": 0,
