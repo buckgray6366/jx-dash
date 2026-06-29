@@ -58,7 +58,7 @@ a{{color:var(--aqua);text-decoration:none}}
 </style></head><body><div class="wrap">
 <div class="topbar"><a class="back" href="./">← Back to dashboard</a>
   <div class="menu" id="menu"><button class="menu-btn" id="menuBtn">☰ Menu</button>
-  <ul class="menu-list"><li><a href="./">📊 Dashboard</a></li><li><a href="change-links.html">⚙️ Change affiliate links</a></li><li><a href="backlinks.html" class="cur">🔗 Backlinks</a></li><li><a href="https://buckgray6366.github.io/jx-playbook/" target="_blank">📋 Playbook ↗</a></li></ul></div>
+  <ul class="menu-list"><li><a href="./">📊 Dashboard</a></li><li><a href="change-links.html">⚙️ Change affiliate links</a></li><li><a href="backlinks.html" class="cur">🔗 Backlinks</a></li><li><a href="manual-backlinks.html">📝 Manual backlinks</a></li><li><a href="https://buckgray6366.github.io/jx-playbook/" target="_blank">📋 Playbook ↗</a></li></ul></div>
 </div>
 <h1><span class="drop"></span>Backlinks <span class="tag">LINK BUILDING</span></h1>
 <div class="sub">{len(arts)} live · {summ} · native articles, each links once deep with a native anchor · click a card to open the article</div>
