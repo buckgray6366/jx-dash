@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29T14:17:30Z",
+  "updated": "2026-06-29T15:17:28Z",
   "range": "Last 7 days",
   "target_conv_per_day": 50,
   "gsc": {
@@ -50,7 +50,7 @@
     },
     "geos": {
       "us": {
-        "clicks": 7,
+        "clicks": 8,
         "conv": 0,
         "revenue": 0.0
       },
@@ -83,13 +83,13 @@
       "fr": 0
     },
     "totals": {
-      "clicks": 7,
+      "clicks": 8,
       "conv": 0,
       "partials": 0,
       "revenue": 0.0
     },
     "account_total": {
-      "clicks": 18,
+      "clicks": 19,
       "conv": 0,
       "partials": 6,
       "revenue": 0.0
@@ -100,12 +100,24 @@
         "conv": 0,
         "revenue": 0.0,
         "partials": 0
+      },
+      "2026-06-29": {
+        "clicks": 1,
+        "conv": 0,
+        "revenue": 0.0,
+        "partials": 0
       }
     },
     "daily_geo": {
       "us": {
         "2026-06-28": {
           "clicks": 7,
+          "conv": 0,
+          "revenue": 0.0,
+          "partials": 0
+        },
+        "2026-06-29": {
+          "clicks": 1,
           "conv": 0,
           "revenue": 0.0,
           "partials": 0
