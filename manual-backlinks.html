@@ -29,6 +29,16 @@ label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--m
 .v{background:#05171c;border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:13.5px;color:#e7f4f5}
 .body{white-space:pre-wrap;font-family:var(--body);line-height:1.6;max-height:230px;overflow:auto;margin:0}
 .link{background:linear-gradient(90deg,rgba(47,224,214,.12),transparent);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:9px;padding:9px 13px;font-size:13px;margin-top:10px}
+.ipbox{background:#06222a;border:1px solid var(--line);border-left:4px solid var(--coral);border-radius:10px;padding:10px 13px;margin-bottom:12px}
+.ipl{font-size:13px;color:#ffd9cf;margin-bottom:8px}.ipl b{color:#fff;font-family:var(--head)}
+.ipgrid{display:grid;grid-template-columns:auto 1fr auto;gap:5px 8px;align-items:center}
+.ipgrid span{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:700}
+.ipgrid code{background:#05171c;border:1px solid var(--line);padding:3px 8px;border-radius:6px;color:var(--aqua);font-size:11.5px;overflow:auto;white-space:nowrap}
+.cp2{background:var(--line);color:var(--ink);border:0;border-radius:6px;padding:3px 9px;font-weight:700;font-size:10.5px;cursor:pointer;font-family:var(--body)}.cp2.done{background:var(--good);color:#04201f}
+.setup{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:18px}
+.setup h3{font-family:var(--head);font-size:14px;color:var(--coral);margin:0 0 8px}
+.setup ol{margin:0;padding-left:18px;font-size:13px}.setup li{padding:2px 0;color:#d6ebed}.setup b{color:#fff}
+.warn{font-size:12px;color:var(--mut);margin-top:8px}
 .foot{color:var(--mut);font-size:11.5px;text-align:center;margin-top:18px}
 </style></head><body><div class="wrap">
 <div class="topbar"><a class="back" href="./">← Back to dashboard</a>
@@ -36,14 +46,33 @@ label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--m
   <ul class="menu-list"><li><a href="./">📊 Dashboard</a></li><li><a href="change-links.html">⚙️ Change affiliate links</a></li><li><a href="backlinks.html">🔗 Backlinks</a></li><li><a href="manual-backlinks.html" class="cur">📝 Manual backlinks</a></li><li><a href="https://buckgray6366.github.io/jx-playbook/" target="_blank">📋 Playbook ↗</a></li></ul></div>
 </div>
 <h1><span class="drop"></span>Manual backlinks <span class="tag">TEAM · HIGH-DA</span></h1>
-<div class="sub">5 high-authority platforms that block automated signup — post these by hand. The article is written; copy, paste, add the one link, publish, send me the URL.</div>
+<div class="sub">5 high-authority platforms that block automated signup — post these by hand. The article is written; each has its own residential IP (geo-matched) so the accounts are never linked.</div>
+<div class="setup">
+  <h3>⚙️ How to use the IPs — one-time setup</h3>
+  <ol>
+    <li>Install the free <b>Proxy SwitchyOmega</b> extension (Chrome / Edge).</li>
+    <li>Add one profile per platform → Protocol <b>HTTP</b>, Server <b>connect.gonzoproxy.app</b>, Port <b>10000</b>, then that platform's <b>user</b> + <b>pass</b> (in each card).</li>
+    <li>Switch to a platform's profile <b>before</b> signing up, and keep it on while you write and publish.</li>
+    <li>Use a separate browser profile (or Incognito window) per platform so logins don't mix.</li>
+  </ol>
+  <div class="warn">These residential IPs are live for ~12 hours. If one stops connecting, tell me and I'll refresh it.</div>
+</div>
 <div class="task">
   <div class="th"><h2>1 · Medium <span class="fl">🇺🇸 EN</span></h2>
     <a class="go" href="https://medium.com" target="_blank">sign up ↗</a></div>
+  <div class="ipbox">
+    <div class="ipl">🇺🇸 Use IP <b>98.14.49.244</b> &nbsp;·&nbsp; New York, US</div>
+    <div class="ipgrid">
+      <span>proxy</span><code id="px_h1">connect.gonzoproxy.app</code><button class="cp2" data-t="px_h1">copy</button>
+      <span>port</span><code id="px_p1">10000</code><button class="cp2" data-t="px_p1">copy</button>
+      <span>user</span><code id="px_u1">GonzosdyOUxO_c_US_s_759461OUM_ttl_12h</code><button class="cp2" data-t="px_u1">copy</button>
+      <span>pass</span><code id="px_w1">ZuBnaGgs</code><button class="cp2" data-t="px_w1">copy</button>
+    </div>
+  </div>
   <ol class="steps">
-    <li>Create a free account at <a href="https://medium.com" target="_blank">medium.com</a> and start a new post (medium.com/new-story).</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="https://medium.com" target="_blank">medium.com</a> and create a free account → new post (medium.com/new-story).</li>
     <li>Copy the <b>Title</b> and <b>Article</b> below into the post.</li>
-    <li>In the post, select the words <b>“in-depth Jetterix review”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/us/</code></li>
+    <li>Select the words <b>“in-depth Jetterix review”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/us/</code></li>
     <li>Publish. Copy the live post URL and send it to me — I add it to the Backlinks tracker.</li>
   </ol>
   <div class="fld"><div class="fh"><label>Title</label><button class="cp" data-t="t1">Copy title</button></div><div class="v" id="t1">I Tested the Jetterix Pressure Nozzle for a Month — My Honest Verdict</div></div>
@@ -65,10 +94,19 @@ My verdict: a clever, no-power tool that does what it promises — as long as yo
 </div><div class="task">
   <div class="th"><h2>2 · Blogger <span class="fl">🇩🇪 DE</span></h2>
     <a class="go" href="https://www.blogger.com" target="_blank">sign up ↗</a></div>
+  <div class="ipbox">
+    <div class="ipl">🇩🇪 Use IP <b>92.208.233.109</b> &nbsp;·&nbsp; Dornstetten, DE</div>
+    <div class="ipgrid">
+      <span>proxy</span><code id="px_h2">connect.gonzoproxy.app</code><button class="cp2" data-t="px_h2">copy</button>
+      <span>port</span><code id="px_p2">10000</code><button class="cp2" data-t="px_p2">copy</button>
+      <span>user</span><code id="px_u2">GonzosdyOUxO_c_DE_s_845220GGY_ttl_12h</code><button class="cp2" data-t="px_u2">copy</button>
+      <span>pass</span><code id="px_w2">ZuBnaGgs</code><button class="cp2" data-t="px_w2">copy</button>
+    </div>
+  </div>
   <ol class="steps">
-    <li>Create a free account at <a href="https://www.blogger.com" target="_blank">www.blogger.com</a> and start a new post (blogger.com → New Post).</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="https://www.blogger.com" target="_blank">www.blogger.com</a> and create a free account → new post (blogger.com → New Post).</li>
     <li>Copy the <b>Title</b> and <b>Article</b> below into the post.</li>
-    <li>In the post, select the words <b>“ausführlichen Jetterix Erfahrungsbericht”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/de/</code></li>
+    <li>Select the words <b>“ausführlichen Jetterix Erfahrungsbericht”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/de/</code></li>
     <li>Publish. Copy the live post URL and send it to me — I add it to the Backlinks tracker.</li>
   </ol>
   <div class="fld"><div class="fh"><label>Title</label><button class="cp" data-t="t2">Copy title</button></div><div class="v" id="t2">Jetterix Erfahrungen: Mein ehrlicher Test der Hochdruckdüse</div></div>
@@ -90,10 +128,19 @@ Mein Fazit: ein cleveres, stromloses Werkzeug, das hält was es verspricht — s
 </div><div class="task">
   <div class="th"><h2>3 · WordPress.com <span class="fl">🇩🇪 DE</span></h2>
     <a class="go" href="https://wordpress.com/start" target="_blank">sign up ↗</a></div>
+  <div class="ipbox">
+    <div class="ipl">🇩🇪 Use IP <b>93.131.144.115</b> &nbsp;·&nbsp; Düsseldorf, DE</div>
+    <div class="ipgrid">
+      <span>proxy</span><code id="px_h3">connect.gonzoproxy.app</code><button class="cp2" data-t="px_h3">copy</button>
+      <span>port</span><code id="px_p3">10000</code><button class="cp2" data-t="px_p3">copy</button>
+      <span>user</span><code id="px_u3">GonzosdyOUxO_c_DE_s_777883MAG_ttl_12h</code><button class="cp2" data-t="px_u3">copy</button>
+      <span>pass</span><code id="px_w3">ZuBnaGgs</code><button class="cp2" data-t="px_w3">copy</button>
+    </div>
+  </div>
   <ol class="steps">
-    <li>Create a free account at <a href="https://wordpress.com/start" target="_blank">wordpress.com/start</a> and start a new post (WordPress → New Post).</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="https://wordpress.com/start" target="_blank">wordpress.com/start</a> and create a free account → new post (WordPress → New Post).</li>
     <li>Copy the <b>Title</b> and <b>Article</b> below into the post.</li>
-    <li>In the post, select the words <b>“kompletten Jetterix Test”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/de/</code></li>
+    <li>Select the words <b>“kompletten Jetterix Test”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/de/</code></li>
     <li>Publish. Copy the live post URL and send it to me — I add it to the Backlinks tracker.</li>
   </ol>
   <div class="fld"><div class="fh"><label>Title</label><button class="cp" data-t="t3">Copy title</button></div><div class="v" id="t3">Hochdruckdüse statt Hochdruckreiniger? Mein Jetterix Praxistest</div></div>
@@ -115,10 +162,19 @@ Fazit: für die typische Gartenpflege eine clevere, günstige und platzsparende 
 </div><div class="task">
   <div class="th"><h2>4 · Tumblr <span class="fl">🇫🇷 FR</span></h2>
     <a class="go" href="https://www.tumblr.com/register" target="_blank">sign up ↗</a></div>
+  <div class="ipbox">
+    <div class="ipl">🇫🇷 Use IP <b>2.11.163.205</b> &nbsp;·&nbsp; Villeneuve-d&#x27;Ascq, FR</div>
+    <div class="ipgrid">
+      <span>proxy</span><code id="px_h4">connect.gonzoproxy.app</code><button class="cp2" data-t="px_h4">copy</button>
+      <span>port</span><code id="px_p4">10000</code><button class="cp2" data-t="px_p4">copy</button>
+      <span>user</span><code id="px_u4">GonzosdyOUxO_c_FR_s_654088VDK_ttl_12h</code><button class="cp2" data-t="px_u4">copy</button>
+      <span>pass</span><code id="px_w4">ZuBnaGgs</code><button class="cp2" data-t="px_w4">copy</button>
+    </div>
+  </div>
   <ol class="steps">
-    <li>Create a free account at <a href="https://www.tumblr.com/register" target="_blank">www.tumblr.com/register</a> and start a new post (Tumblr → New Text Post).</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="https://www.tumblr.com/register" target="_blank">www.tumblr.com/register</a> and create a free account → new post (Tumblr → New Text Post).</li>
     <li>Copy the <b>Title</b> and <b>Article</b> below into the post.</li>
-    <li>In the post, select the words <b>“avis détaillé sur Jetterix”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/fr/</code></li>
+    <li>Select the words <b>“avis détaillé sur Jetterix”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/fr/</code></li>
     <li>Publish. Copy the live post URL and send it to me — I add it to the Backlinks tracker.</li>
   </ol>
   <div class="fld"><div class="fh"><label>Title</label><button class="cp" data-t="t4">Copy title</button></div><div class="v" id="t4">Jetterix avis : mon test honnête de la buse haute pression</div></div>
@@ -140,10 +196,19 @@ Mon verdict : un accessoire malin et sans électricité, à condition de ne pas 
 </div><div class="task">
   <div class="th"><h2>5 · Substack <span class="fl">🇫🇷 FR</span></h2>
     <a class="go" href="https://substack.com" target="_blank">sign up ↗</a></div>
+  <div class="ipbox">
+    <div class="ipl">🇫🇷 Use IP <b>82.120.164.230</b> &nbsp;·&nbsp; Saint-Michel, FR</div>
+    <div class="ipgrid">
+      <span>proxy</span><code id="px_h5">connect.gonzoproxy.app</code><button class="cp2" data-t="px_h5">copy</button>
+      <span>port</span><code id="px_p5">10000</code><button class="cp2" data-t="px_p5">copy</button>
+      <span>user</span><code id="px_u5">GonzosdyOUxO_c_FR_s_732276DGB_ttl_12h</code><button class="cp2" data-t="px_u5">copy</button>
+      <span>pass</span><code id="px_w5">ZuBnaGgs</code><button class="cp2" data-t="px_w5">copy</button>
+    </div>
+  </div>
   <ol class="steps">
-    <li>Create a free account at <a href="https://substack.com" target="_blank">substack.com</a> and start a new post (Substack → New post).</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="https://substack.com" target="_blank">substack.com</a> and create a free account → new post (Substack → New post).</li>
     <li>Copy the <b>Title</b> and <b>Article</b> below into the post.</li>
-    <li>In the post, select the words <b>“test complet de la buse Jetterix”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/fr/</code></li>
+    <li>Select the words <b>“test complet de la buse Jetterix”</b>, click the link button, and paste this URL: <code>https://tryjetterix.com/fr/</code></li>
     <li>Publish. Copy the live post URL and send it to me — I add it to the Backlinks tracker.</li>
   </ol>
   <div class="fld"><div class="fh"><label>Title</label><button class="cp" data-t="t5">Copy title</button></div><div class="v" id="t5">J&#x27;ai testé la buse Jetterix pendant un mois — voici mon verdict</div></div>
@@ -170,6 +235,11 @@ document.addEventListener("click",function(){document.getElementById("menu").cla
 document.querySelectorAll(".cp").forEach(function(b){b.addEventListener("click",function(){
   var txt=document.getElementById(this.dataset.t).innerText,self=this;
   var done=function(){self.textContent="✓ Copied";self.classList.add("done");setTimeout(function(){self.textContent=self.dataset.t[0]==="t"?"Copy title":"Copy article";self.classList.remove("done");},1500);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fb(txt,done);});}else fb(txt,done);
+});});
+document.querySelectorAll(".cp2").forEach(function(b){b.addEventListener("click",function(){
+  var txt=document.getElementById(this.dataset.t).innerText,self=this;
+  var done=function(){self.textContent="✓";self.classList.add("done");setTimeout(function(){self.textContent="copy";self.classList.remove("done");},1200);};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fb(txt,done);});}else fb(txt,done);
 });});
 function fb(txt,done){var t=document.createElement("textarea");t.value=txt;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");done();}catch(e){}document.body.removeChild(t);}

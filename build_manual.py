@@ -98,16 +98,36 @@ J'avais lu un test complet de la buse Jetterix avant de commander, ce qui m'a ai
 Au final : un bon rapport qualité-prix, abordable, facile à ranger et sans électricité.""" },
 ]
 
+# one dedicated residential IP per platform, geo-matched (so the accounts are never linked).
+# Gonzo gateway connect.gonzoproxy.app:10000; the username token sets the country + sticky exit IP (~12h).
+PROX = {
+ "Medium":        {"ip":"98.14.49.244","loc":"New York, US","cc":"US","user":"GonzosdyOUxO_c_US_s_759461OUM_ttl_12h","pw":"ZuBnaGgs"},
+ "Blogger":       {"ip":"92.208.233.109","loc":"Dornstetten, DE","cc":"DE","user":"GonzosdyOUxO_c_DE_s_845220GGY_ttl_12h","pw":"ZuBnaGgs"},
+ "WordPress.com": {"ip":"93.131.144.115","loc":"Düsseldorf, DE","cc":"DE","user":"GonzosdyOUxO_c_DE_s_777883MAG_ttl_12h","pw":"ZuBnaGgs"},
+ "Tumblr":        {"ip":"2.11.163.205","loc":"Villeneuve-d'Ascq, FR","cc":"FR","user":"GonzosdyOUxO_c_FR_s_654088VDK_ttl_12h","pw":"ZuBnaGgs"},
+ "Substack":      {"ip":"82.120.164.230","loc":"Saint-Michel, FR","cc":"FR","user":"GonzosdyOUxO_c_FR_s_732276DGB_ttl_12h","pw":"ZuBnaGgs"},
+}
+PFLAG = {"US":"🇺🇸","DE":"🇩🇪","FR":"🇫🇷"}
 cards = []
 for i, t in enumerate(TASKS, 1):
     bid = "b%d" % i
+    px = PROX[t["platform"]]
     cards.append(f'''<div class="task">
   <div class="th"><h2>{i} · {E(t['platform'])} <span class="fl">{FLAG[t['lang']]} {t['lang'].upper()}</span></h2>
     <a class="go" href="{E(t['signup'])}" target="_blank">sign up ↗</a></div>
+  <div class="ipbox">
+    <div class="ipl">{PFLAG[px['cc']]} Use IP <b>{px['ip']}</b> &nbsp;·&nbsp; {E(px['loc'])}</div>
+    <div class="ipgrid">
+      <span>proxy</span><code id="px_h{i}">connect.gonzoproxy.app</code><button class="cp2" data-t="px_h{i}">copy</button>
+      <span>port</span><code id="px_p{i}">10000</code><button class="cp2" data-t="px_p{i}">copy</button>
+      <span>user</span><code id="px_u{i}">{E(px['user'])}</code><button class="cp2" data-t="px_u{i}">copy</button>
+      <span>pass</span><code id="px_w{i}">{E(px['pw'])}</code><button class="cp2" data-t="px_w{i}">copy</button>
+    </div>
+  </div>
   <ol class="steps">
-    <li>Create a free account at <a href="{E(t['signup'])}" target="_blank">{E(t['signup'].split('//')[1])}</a> and start a new post ({E(t['write'])}).</li>
+    <li>Switch your proxy to the <b>IP above</b> (setup at top), then open <a href="{E(t['signup'])}" target="_blank">{E(t['signup'].split('//')[1])}</a> and create a free account → new post ({E(t['write'])}).</li>
     <li>Copy the <b>Title</b> and <b>Article</b> below into the post.</li>
-    <li>In the post, select the words <b>“{E(t['anchor'])}”</b>, click the link button, and paste this URL: <code>{E(t['target'])}</code></li>
+    <li>Select the words <b>“{E(t['anchor'])}”</b>, click the link button, and paste this URL: <code>{E(t['target'])}</code></li>
     <li>Publish. Copy the live post URL and send it to me — I add it to the Backlinks tracker.</li>
   </ol>
   <div class="fld"><div class="fh"><label>Title</label><button class="cp" data-t="t{i}">Copy title</button></div><div class="v" id="t{i}">{E(t['title'])}</div></div>
@@ -146,6 +166,16 @@ label{{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--
 .v{{background:#05171c;border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:13.5px;color:#e7f4f5}}
 .body{{white-space:pre-wrap;font-family:var(--body);line-height:1.6;max-height:230px;overflow:auto;margin:0}}
 .link{{background:linear-gradient(90deg,rgba(47,224,214,.12),transparent);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:9px;padding:9px 13px;font-size:13px;margin-top:10px}}
+.ipbox{{background:#06222a;border:1px solid var(--line);border-left:4px solid var(--coral);border-radius:10px;padding:10px 13px;margin-bottom:12px}}
+.ipl{{font-size:13px;color:#ffd9cf;margin-bottom:8px}}.ipl b{{color:#fff;font-family:var(--head)}}
+.ipgrid{{display:grid;grid-template-columns:auto 1fr auto;gap:5px 8px;align-items:center}}
+.ipgrid span{{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:700}}
+.ipgrid code{{background:#05171c;border:1px solid var(--line);padding:3px 8px;border-radius:6px;color:var(--aqua);font-size:11.5px;overflow:auto;white-space:nowrap}}
+.cp2{{background:var(--line);color:var(--ink);border:0;border-radius:6px;padding:3px 9px;font-weight:700;font-size:10.5px;cursor:pointer;font-family:var(--body)}}.cp2.done{{background:var(--good);color:#04201f}}
+.setup{{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:18px}}
+.setup h3{{font-family:var(--head);font-size:14px;color:var(--coral);margin:0 0 8px}}
+.setup ol{{margin:0;padding-left:18px;font-size:13px}}.setup li{{padding:2px 0;color:#d6ebed}}.setup b{{color:#fff}}
+.warn{{font-size:12px;color:var(--mut);margin-top:8px}}
 .foot{{color:var(--mut);font-size:11.5px;text-align:center;margin-top:18px}}
 </style></head><body><div class="wrap">
 <div class="topbar"><a class="back" href="./">← Back to dashboard</a>
@@ -153,7 +183,17 @@ label{{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--
   <ul class="menu-list"><li><a href="./">📊 Dashboard</a></li><li><a href="change-links.html">⚙️ Change affiliate links</a></li><li><a href="backlinks.html">🔗 Backlinks</a></li><li><a href="manual-backlinks.html" class="cur">📝 Manual backlinks</a></li><li><a href="https://buckgray6366.github.io/jx-playbook/" target="_blank">📋 Playbook ↗</a></li></ul></div>
 </div>
 <h1><span class="drop"></span>Manual backlinks <span class="tag">TEAM · HIGH-DA</span></h1>
-<div class="sub">5 high-authority platforms that block automated signup — post these by hand. The article is written; copy, paste, add the one link, publish, send me the URL.</div>
+<div class="sub">5 high-authority platforms that block automated signup — post these by hand. The article is written; each has its own residential IP (geo-matched) so the accounts are never linked.</div>
+<div class="setup">
+  <h3>⚙️ How to use the IPs — one-time setup</h3>
+  <ol>
+    <li>Install the free <b>Proxy SwitchyOmega</b> extension (Chrome / Edge).</li>
+    <li>Add one profile per platform → Protocol <b>HTTP</b>, Server <b>connect.gonzoproxy.app</b>, Port <b>10000</b>, then that platform's <b>user</b> + <b>pass</b> (in each card).</li>
+    <li>Switch to a platform's profile <b>before</b> signing up, and keep it on while you write and publish.</li>
+    <li>Use a separate browser profile (or Incognito window) per platform so logins don't mix.</li>
+  </ol>
+  <div class="warn">These residential IPs are live for ~12 hours. If one stops connecting, tell me and I'll refresh it.</div>
+</div>
 {''.join(cards)}
 <div class="foot">Confidential · internal · send each published URL back to add it to the Backlinks tracker</div>
 <script>
@@ -162,6 +202,11 @@ document.addEventListener("click",function(){{document.getElementById("menu").cl
 document.querySelectorAll(".cp").forEach(function(b){{b.addEventListener("click",function(){{
   var txt=document.getElementById(this.dataset.t).innerText,self=this;
   var done=function(){{self.textContent="✓ Copied";self.classList.add("done");setTimeout(function(){{self.textContent=self.dataset.t[0]==="t"?"Copy title":"Copy article";self.classList.remove("done");}},1500);}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writeText(txt).then(done).catch(function(){{fb(txt,done);}});}}else fb(txt,done);
+}});}});
+document.querySelectorAll(".cp2").forEach(function(b){{b.addEventListener("click",function(){{
+  var txt=document.getElementById(this.dataset.t).innerText,self=this;
+  var done=function(){{self.textContent="✓";self.classList.add("done");setTimeout(function(){{self.textContent="copy";self.classList.remove("done");}},1200);}};
   if(navigator.clipboard&&navigator.clipboard.writeText){{navigator.clipboard.writeText(txt).then(done).catch(function(){{fb(txt,done);}});}}else fb(txt,done);
 }});}});
 function fb(txt,done){{var t=document.createElement("textarea");t.value=txt;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{{document.execCommand("copy");done();}}catch(e){{}}document.body.removeChild(t);}}
