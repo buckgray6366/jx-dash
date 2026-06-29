@@ -298,5 +298,77 @@
   "status": "live",
   "verified": true,
   "shot": "bl/bl25.png"
+ },
+ {
+  "lang": "de",
+  "platform": "Write.as",
+  "author": "Greta Hoffmann",
+  "title": "Jetterix Hochdruckdüse: Test nach dem ersten Sommer",
+  "anchor": "ausführlichen Jetterix Test",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://write.as/dedg1u3ptyb8z",
+  "status": "live",
+  "shot": "bl/bl26.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Rentry",
+  "author": "Klaus Bauer",
+  "title": "Lohnt sich Jetterix für die Einfahrt?",
+  "anchor": "Jetterix Erfahrungen",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://rentry.co/9mctekyv",
+  "status": "live",
+  "shot": "bl/bl27.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Telegraph",
+  "author": "Ute Wagner",
+  "title": "Gartenreinigung ohne Strom: Jetterix im Check",
+  "anchor": "kompletten Jetterix Erfahrungsbericht",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://telegra.ph/Gartenreinigung-ohne-Strom-Jetterix-im-Check-06-29",
+  "status": "live",
+  "shot": "bl/bl28.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Write.as",
+  "author": "Dieter Schmitt",
+  "title": "Jetterix oder Kärcher: meine ehrliche Meinung",
+  "anchor": "detaillierten Jetterix Vergleich",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://write.as/zpolb2r7w0di8",
+  "status": "live",
+  "shot": "bl/bl29.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Rentry",
+  "author": "Monika Fischer",
+  "title": "Jetterix Düse: hält sie, was sie verspricht?",
+  "anchor": "Jetterix Test mit Vor- und Nachteilen",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://rentry.co/nohpk68m",
+  "status": "live",
+  "shot": "bl/bl30.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Telegraph",
+  "author": "Ralf Becker",
+  "title": "Terrasse und Auto reinigen mit Jetterix",
+  "anchor": "ausführlichen Erfahrungsbericht zu Jetterix",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://telegra.ph/Terrasse-und-Auto-reinigen-mit-Jetterix-06-29",
+  "status": "live",
+  "shot": "bl/bl31.png",
+  "verified": true
  }
 ]

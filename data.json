@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "updated": "2026-06-29T18:17:28Z",
+=======
+  "updated": "2026-06-29T18:24:13Z",
+>>>>>>> d370d40 (Backlinks: DE-focused batch (6 links -> /de/, varied anchors) -> 31 total)
   "range": "Last 7 days",
   "target_conv_per_day": 50,
   "gsc": {
