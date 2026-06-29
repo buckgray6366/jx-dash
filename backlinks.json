@@ -286,5 +286,17 @@
   "status": "live",
   "verified": true,
   "shot": "bl/bl24.png"
+ },
+ {
+  "lang": "fr",
+  "platform": "Substack",
+  "author": "nisha",
+  "title": "J'ai testé la buse Jetterix pendant un mois — voici mon verdict",
+  "anchor": "test complet de la buse Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://nisha361101.substack.com/p/jai-teste-la-buse-jetterix-pendant",
+  "status": "live",
+  "verified": true,
+  "shot": "bl/bl25.png"
  }
 ]
