@@ -70,5 +70,113 @@
   "status": "live",
   "verified": true,
   "shot": "bl/bl6.png"
+ },
+ {
+  "lang": "de",
+  "platform": "Write.as",
+  "author": "Petra Schulz",
+  "title": "Jetterix Hochdruckdüse: ehrliche Bewertung nach 3 Wochen",
+  "anchor": "alle Jetterix Erfahrungen",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://write.as/3kvvjfg2nzf9c",
+  "status": "live",
+  "shot": "bl/bl7.png",
+  "verified": true
+ },
+ {
+  "lang": "fr",
+  "platform": "Write.as",
+  "author": "Antoine Lefevre",
+  "title": "Buse Jetterix : mon retour honnête après un mois",
+  "anchor": "l'avis détaillé sur Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://write.as/exgloh5glnuxb",
+  "status": "live",
+  "shot": "bl/bl8.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Telegraph",
+  "author": "Andreas Vogel",
+  "title": "Günstige Kärcher-Alternative? Jetterix im Praxistest",
+  "anchor": "ausführlichen Jetterix Test",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://telegra.ph/Günstige-Kärcher-Alternative-Jetterix-im-Praxistest-06-29",
+  "status": "live",
+  "shot": "bl/bl9.png",
+  "verified": true
+ },
+ {
+  "lang": "fr",
+  "platform": "Telegraph",
+  "author": "Sophie Durand",
+  "title": "Jetterix arnaque ou pas ? Mon test sans filtre",
+  "anchor": "tous les avis sur Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://telegra.ph/Jetterix-arnaque-ou-pas--Mon-test-sans-filtre-06-29",
+  "status": "live",
+  "shot": "bl/bl10.png",
+  "verified": true
+ },
+ {
+  "lang": "en",
+  "platform": "GitHub Gist",
+  "author": "timothywade8452",
+  "title": "Jetterix Review Notes — Hands-on Test",
+  "anchor": "the full hands-on Jetterix review",
+  "target": "https://tryjetterix.com/us/",
+  "url": "https://gist.github.com/timothywade8452/5d0527bacdb67cb708263174d344753a",
+  "status": "live",
+  "shot": "bl/bl11.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "GitHub Gist",
+  "author": "joshuamorris10451",
+  "title": "Jetterix Test — meine Notizen",
+  "anchor": "ausführlichen Erfahrungsbericht zu Jetterix",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://gist.github.com/joshuamorris10451/df3e34b79dc7cb36d2737643c27dd967",
+  "status": "live",
+  "shot": "bl/bl12.png",
+  "verified": true
+ },
+ {
+  "lang": "fr",
+  "platform": "GitHub Gist",
+  "author": "danielarnold6136",
+  "title": "Jetterix avis — mes notes de test",
+  "anchor": "l'avis complet sur la buse Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://gist.github.com/danielarnold6136/3a7b51936f3839be079ddf950263eeca",
+  "status": "live",
+  "shot": "bl/bl13.png",
+  "verified": true
+ },
+ {
+  "lang": "de",
+  "platform": "Rentry",
+  "author": "rentry",
+  "title": "Jetterix Erfahrungen kurz zusammengefasst",
+  "anchor": "kompletten Jetterix Test",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://rentry.co/tgvaoq6a",
+  "status": "live",
+  "shot": "bl/bl14.png",
+  "verified": true
+ },
+ {
+  "lang": "fr",
+  "platform": "Rentry",
+  "author": "rentry",
+  "title": "Jetterix test — mes notes rapides",
+  "anchor": "le test complet de Jetterix",
+  "target": "https://tryjetterix.com/fr/",
+  "url": "https://rentry.co/hkus2kgt",
+  "status": "live",
+  "shot": "bl/bl15.png",
+  "verified": true
  }
 ]
