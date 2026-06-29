@@ -237,7 +237,7 @@ async function loadAll(){
     gsc: live? live.gsc : (BASE.gsc||{}),
     oasis: BASE.oasis||{},
     target_conv_per_day: BASE.target_conv_per_day||50,
-    range: lbl,
+    range: lbl, start, end, rangeVal: v,
     updated: live? live.generatedAt : (BASE.updated||new Date().toISOString())
   });
   $("sub").textContent=(live?"🟢 LIVE":"⚪ cached")+" · "+lbl+" ("+start+" → "+end+", PT) · all windows in Pacific (GSC + OasisAds aligned) · "+(live?("updated "+live.generatedAt):("data.json "+new Date(BASE.updated||Date.now()).toLocaleString()));
@@ -307,6 +307,15 @@ document.getElementById("range").addEventListener("change",function(){try{localS
 setInterval(loadAll,90000);  // auto-refresh every 90s
 loadAll();
 
+// OasisAds clicks/conv/revenue for ONE geo within the selected date range (sums the daily series).
+// Falls back to the 90-day per-geo total only if the daily series isn't present.
+function oaRange(oa,g,start,end){
+  const s=oa.daily_geo&&oa.daily_geo[g];
+  if(s&&start&&end){let o={clicks:0,conv:0,revenue:0,partials:0};
+    for(const day in s){if(day>=start&&day<=end){const r=s[day];o.clicks+=r.clicks||0;o.conv+=r.conv||0;o.revenue+=r.revenue||0;o.partials+=r.partials||0;}}
+    return o;}
+  return (oa.geos&&oa.geos[g])||{};
+}
 function render(d){
   const gsc=d.gsc||{}, oa=d.oasis||{};
   document.getElementById("sub").textContent="Updated "+new Date(d.updated).toLocaleString()+" · "+(d.range||"");
@@ -318,7 +327,7 @@ function render(d){
   // aggregate
   let T={impr:0,clicks:0,offer:0,conv:0,rev:0,posW:0,posN:0};
   const rowsHtml=GEOS.map(g=>{
-    const G=gsc.geos?.[g]||{}, O=oa.geos?.[g]||{};
+    const G=gsc.geos?.[g]||{}, O=oaRange(oa,g,d.start,d.end);
     const impr=G.impr||0, clk=G.clicks||0, pos=G.pos||0, off=O.clicks||0, cv=O.conv||0, rev=O.revenue||0;
     T.impr+=impr;T.clicks+=clk;T.offer+=off;T.conv+=cv;T.rev+=rev;
     if(impr>0){T.posW+=pos*impr;T.posN+=impr;}
@@ -356,7 +365,8 @@ function render(d){
 
   // pace
   const target=d.target_conv_per_day||50;
-  const perDay=T.conv/7;
+  const days=(d.start&&d.end)?Math.max(1,Math.round((new Date(d.end)-new Date(d.start))/864e5)+1):7;
+  const perDay=T.conv/days;
   const pct=Math.min(100,Math.round(perDay/target*100));
   const ring=document.getElementById("ring"); ring.style.setProperty("--p",pct);
   document.getElementById("ringTxt").textContent=pct+"%";

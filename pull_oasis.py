@@ -61,6 +61,23 @@ def main():
                                "partials": sum(v["partials"] for v in geos.values()), "revenue": round(sum(v["revenue"] for v in geos.values()), 2)}
     data["oasis"]["account_total"] = {"clicks": int(trow.get("clicks", 0)), "conv": int(trow.get("conversions", 0)),
                                        "partials": int(trow.get("partials", 0)), "revenue": float(trow.get("earnings", 0) or 0)}
+    # per-geo DAILY series so the dashboard can show clicks for the SELECTED date range
+    # (offer_id must be passed as an ARRAY here; a bare string 400s)
+    daily_geo = {g: {} for g in OFFER_GEO.values()}
+    daily = {}
+    for off, g in OFFER_GEO.items():
+        drep = post(op, "/report/daily", {"filters": {"offer_id": [off], **dr}, "limit": 400, "sort": "day", "order": 1}, token)
+        for r in (drep.get("result") or {}).get("data") or []:
+            day = r.get("day")
+            rec = {"clicks": int(r.get("clicks", 0)), "conv": int(r.get("conversions", 0)),
+                   "revenue": float(r.get("earnings", 0) or 0), "partials": int(r.get("partials", 0))}
+            if not day or not (rec["clicks"] or rec["conv"] or rec["partials"]):
+                continue
+            daily_geo[g][day] = rec
+            d = daily.setdefault(day, {"clicks": 0, "conv": 0, "revenue": 0.0, "partials": 0})
+            for k in rec: d[k] += rec[k]
+    data["oasis"]["daily"] = daily
+    data["oasis"]["daily_geo"] = daily_geo
     data["oasis"]["note"] = "Live from OasisAds reporting (residential pull). 'partials' = checkout-started, not yet paid."
     data["updated"] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     json.dump(data, open(path, "w"), ensure_ascii=False, indent=2)
