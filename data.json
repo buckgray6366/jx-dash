@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-29T12:17:22Z",
+  "updated": "2026-06-29T13:17:24Z",
   "range": "Last 7 days",
   "target_conv_per_day": 50,
   "gsc": {
@@ -7,34 +7,34 @@
     "note": "",
     "geos": {
       "us": {
-        "impr": 0,
-        "clicks": 0,
-        "ctr": 0,
-        "pos": 0
-      },
-      "uk": {
-        "impr": 0,
-        "clicks": 0,
-        "ctr": 0,
-        "pos": 0
-      },
-      "au": {
-        "impr": 0,
-        "clicks": 0,
-        "ctr": 0,
-        "pos": 0
-      },
-      "de": {
         "impr": 1,
         "clicks": 0,
         "ctr": 0.0,
-        "pos": 8.0
+        "pos": 4.0
+      },
+      "uk": {
+        "impr": 3,
+        "clicks": 0,
+        "ctr": 0.0,
+        "pos": 3.7
+      },
+      "au": {
+        "impr": 1,
+        "clicks": 0,
+        "ctr": 0.0,
+        "pos": 3.0
+      },
+      "de": {
+        "impr": 3,
+        "clicks": 0,
+        "ctr": 0.0,
+        "pos": 6.7
       },
       "fr": {
-        "impr": 0,
+        "impr": 4,
         "clicks": 0,
-        "ctr": 0,
-        "pos": 0
+        "ctr": 0.0,
+        "pos": 6.8
       }
     }
   },
