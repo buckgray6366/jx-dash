@@ -34,6 +34,13 @@ a{color:var(--aqua)}
 .ctl{font:inherit;font-size:12.5px;font-weight:700;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
 .ctl:hover{border-color:var(--teal)}
 .btn-r{color:#04201f;background:linear-gradient(180deg,var(--teal),var(--teal2));border:0}
+.menu{position:relative}
+.menu-btn{font:inherit;font-size:12.5px;font-weight:800;color:#04201f;background:linear-gradient(180deg,var(--aqua),var(--teal));border:0;border-radius:999px;padding:5px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.menu-list{position:absolute;right:0;top:34px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.45);list-style:none;margin:0;padding:6px;min-width:215px;display:none;z-index:80}
+.menu.open .menu-list{display:block}
+.menu-list li a{display:block;padding:9px 11px;border-radius:9px;color:var(--ink);font-size:13.5px;text-decoration:none;font-weight:600}
+.menu-list li a:hover{background:var(--bg2);color:var(--aqua)}
+.menu-list li a.cur{color:var(--aqua)}
 .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:8px 0 22px}
 .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 14px}
 .kpi .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);font-weight:700}
@@ -83,7 +90,6 @@ tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:
     <div>
       <div class="brand"><span class="drop"></span>Jetterix <small>COMMAND CENTER</small></div>
       <div class="sub" id="sub">Loading…</div>
-      <div style="margin-top:2px"><a href="change-links.html" style="font-size:12.5px;color:var(--aqua);font-weight:600">⚙️ How to change affiliate links →</a></div>
     </div>
     <div class="pills">
       <select id="range" class="ctl" title="Date range">
@@ -99,6 +105,14 @@ tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:0;color:
       <span class="pill"><span class="dot off" id="liveDot"></span><span id="liveTxt">connecting…</span></span>
       <span class="pill"><span class="dot off" id="gscDot"></span><span id="gscTxt">GSC</span></span>
       <span class="pill"><span class="dot off" id="oaDot"></span><span id="oaTxt">OasisAds</span></span>
+      <div class="menu" id="menu">
+        <button class="menu-btn" id="menuBtn">☰ Menu</button>
+        <ul class="menu-list">
+          <li><a href="./" class="cur">📊 Dashboard</a></li>
+          <li><a href="change-links.html">⚙️ Change affiliate links</a></li>
+          <li><a href="https://buckgray6366.github.io/jx-playbook/" target="_blank">📋 Playbook ↗</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -284,6 +298,8 @@ function renderRich(live){
 }
 /* remember the selected date range across reloads */
 try{const sv=localStorage.getItem("jx_range");if(sv)$("range").value=sv;}catch(e){}
+document.getElementById("menuBtn").addEventListener("click",function(e){e.stopPropagation();document.getElementById("menu").classList.toggle("open");});
+document.addEventListener("click",function(){document.getElementById("menu").classList.remove("open");});
 document.getElementById("refresh").addEventListener("click",loadAll);
 document.getElementById("range").addEventListener("change",function(){try{localStorage.setItem("jx_range",this.value);}catch(e){}loadAll();});
 setInterval(loadAll,90000);  // auto-refresh every 90s

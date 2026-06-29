@@ -20,6 +20,14 @@ a{color:var(--aqua);font-weight:600}
 .tag{font-family:var(--body);font-weight:700;font-size:10px;color:var(--coral);border:1px solid var(--line);padding:3px 9px;border-radius:7px;letter-spacing:.1em}
 .sub{color:var(--mut);font-size:13px;margin:5px 0 22px}
 .back{font-size:13px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.menu{position:relative}
+.menu-btn{font:inherit;font-size:12.5px;font-weight:800;color:#04201f;background:linear-gradient(180deg,var(--aqua),var(--teal));border:0;border-radius:999px;padding:6px 13px;cursor:pointer}
+.menu-list{position:absolute;right:0;top:36px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.45);list-style:none;margin:0;padding:6px;min-width:215px;display:none;z-index:80}
+.menu.open .menu-list{display:block}
+.menu-list li a{display:block;padding:9px 11px;border-radius:9px;color:var(--ink);font-size:13.5px;text-decoration:none;font-weight:600}
+.menu-list li a:hover{background:var(--bg)}
+.menu-list li a.cur{color:var(--aqua)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:16px}
 .card h2{font-size:16px;color:var(--aqua);margin-bottom:12px}
 .step{display:flex;gap:13px;padding:9px 0;border-bottom:1px solid var(--line)}
@@ -42,7 +50,17 @@ ul{margin:6px 0 0;padding-left:18px} li{padding:2px 0;color:#cfe7ea}
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="./">← Back to dashboard</a>
+  <div class="topbar">
+    <a class="back" href="./">← Back to dashboard</a>
+    <div class="menu" id="menu">
+      <button class="menu-btn" id="menuBtn">☰ Menu</button>
+      <ul class="menu-list">
+        <li><a href="./">📊 Dashboard</a></li>
+        <li><a href="change-links.html" class="cur">⚙️ Change affiliate links</a></li>
+        <li><a href="https://buckgray6366.github.io/jx-playbook/" target="_blank">📋 Playbook ↗</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="brand" style="margin-top:10px"><span class="drop"></span>Change affiliate links <span class="tag">TEAM GUIDE</span></div>
   <div class="sub">How to point any country to a different offer/network. No coding, no rebuild — ~1 minute. Tracking stays intact automatically.</div>
 
@@ -79,6 +97,8 @@ ul{margin:6px 0 0;padding-left:18px} li{padding:2px 0;color:#cfe7ea}
   <div class="foot">Confidential · internal · the live site is francistucker5374/tryjetterix · changes go live via GitHub Pages</div>
 </div>
 <script>
+document.getElementById("menuBtn").addEventListener("click",function(e){e.stopPropagation();document.getElementById("menu").classList.toggle("open");});
+document.addEventListener("click",function(){document.getElementById("menu").classList.remove("open");});
 const LINKS=[
   ["🇺🇸 US","OasisAds","https://trkc115.com/c?p=P4016&o=O6887&cr=10810"],
   ["🇬🇧 UK","OasisAds","https://trkc115.com/c?p=P4016&o=O6888&cr=10812"],
