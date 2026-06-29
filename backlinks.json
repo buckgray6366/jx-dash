@@ -274,5 +274,17 @@
   "status": "live",
   "verified": true,
   "shot": "bl/bl23.png"
+ },
+ {
+  "lang": "de",
+  "platform": "WordPress",
+  "author": "nisha",
+  "title": "Hochdruckdüse statt Hochdruckreiniger? Mein Jetterix Praxistest",
+  "anchor": "kompletten Jetterix Test",
+  "target": "https://tryjetterix.com/de/",
+  "url": "https://jetterixx.wordpress.com/2026/06/29/hochdruckduse-statt-hochdruckreiniger-mein-jetterix-praxistest/",
+  "status": "live",
+  "verified": true,
+  "shot": "bl/bl24.png"
  }
 ]
